@@ -28,7 +28,7 @@ public class RoomController {
 		return service.addRoom(room);
 	}
 
-	@PutMapping("/updateRoom/{uid}")
+	@PutMapping("/updateRoom")
 	public String updateRoom(@RequestBody Room room) {
 		return service.updateRoom(room);
 	}

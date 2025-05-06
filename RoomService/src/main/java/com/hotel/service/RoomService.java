@@ -2,7 +2,6 @@ package com.hotel.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
 
 import com.hotel.exception.RoomNotFound;
 import com.hotel.model.Room;

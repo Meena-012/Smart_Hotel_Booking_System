@@ -22,12 +22,14 @@ public class Room {
 	@Id
 	@Positive(message = "Room ID must be a positive number")
 	@NotNull
-    private int id; // Unique identifier for the room
+    private int roomId; // Unique identifier for the room
 
     @Positive(message = "Hotel ID must be a positive number")
     @NotNull
     private int hotelId; // The hotel this room belongs to (foreign key)
 
+    private int userId;
+    
     @NotBlank(message = "Room type cannot be empty")
     @Size(min = 4, max = 50, message = "Room type must be between 4 and 50 characters")
     private String type; // Room type (Single, Double, Suite, Deluxe)

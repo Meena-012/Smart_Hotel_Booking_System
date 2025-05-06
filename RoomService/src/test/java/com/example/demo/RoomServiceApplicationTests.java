@@ -23,7 +23,7 @@ class RoomServiceApplicationTests {
 	RoomServiceImpl service;
 	@Test
 	void RoomTest() {
-		Room room=new Room(201,120,"Double",3500.00,false,"AC, TV, Kitchenette, City View");
+		Room room=new Room(201,120,3,"Double",3500.00,false,"AC, TV, Kitchenette, City View");
 		Mockito.when(repository.save(room)).thenReturn(room);
 		String response=service.addRoom(room);
 		assertEquals("Room Information Saved Successfully!!", response);
