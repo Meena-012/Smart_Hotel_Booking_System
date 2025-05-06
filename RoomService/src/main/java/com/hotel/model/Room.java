@@ -22,3 +22,5 @@ public class Room {
 	private boolean availability; // Availability status (true = available, false = booked)
 	private String features; // Additional features (e.g., AC, TV, Balcony, Sea View)
 }
+
+
