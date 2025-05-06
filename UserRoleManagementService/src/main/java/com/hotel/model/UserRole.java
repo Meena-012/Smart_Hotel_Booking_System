@@ -24,7 +24,7 @@ public class UserRole {
 	@NotBlank(message = "User Name Cannot Be Empty..")
 	private String userName;
 
-	// regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z.-]+\\.[a-zA-Z]{2,}$",
+	// regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z.-]+\\.[a-zA-Z]{2,}$"
 	@Email(message = "Invalid email format")
 	@NotBlank
 	private String userEmail;
@@ -34,11 +34,11 @@ public class UserRole {
 	 * "Password must contain at least one uppercase letter, one number, and be at
 	 * least 6 characters long")
 	 */
-	@NotBlank
+	@NotBlank(message = "Password cannot be Empty")
 	private String userPassword;
 
 	@Pattern(regexp = "^(Admin|Manager|Guest)$", message = "Role must be either Admin, Manager, or Guest")
-	@NotBlank
+	@NotBlank(message = "Role cannot be Blank")
 	private String role;
 
 }
