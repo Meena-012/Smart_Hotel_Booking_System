@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "user_info")
 public class UserRole {
 	@Id
-	@NotNull
+	@NotNull(message = "User Id cannot be Null")
 	private int userId;
 
 	@NotBlank(message = "User Name Cannot Be Empty..")
