@@ -10,9 +10,8 @@ import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
 public class CustomGlobalExceptionHandler {
-	
 
-@ExceptionHandler(value = UserNotFound.class)
+	@ExceptionHandler(value = UserNotFound.class)
 	public ResponseEntity<ExceptionResponse> handleAdminRegistrationException(UserNotFound exception,
 			WebRequest webRequest) {
 
@@ -22,10 +21,9 @@ public class CustomGlobalExceptionHandler {
 		exceptionResponse.setMessage(exception.getMessage());
 
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_ACCEPTABLE);
-
 	}
 
-@ExceptionHandler(value = Exception.class)
+	@ExceptionHandler(value = Exception.class)
 	public ResponseEntity<ExceptionResponse> handleAccountIdException(Exception exception, WebRequest webRequest) {
 
 		ExceptionResponse exceptionResponse = new ExceptionResponse();
