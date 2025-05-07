@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.hotel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,12 +8,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.hotel.UserRoleManagementServiceApplication;
 import com.hotel.model.UserRole;
 import com.hotel.repository.UserRoleRepository;
 import com.hotel.service.UserRoleServiceImpl;
 
-@SpringBootTest(classes = UserRoleManagementServiceApplication.class)
+@SpringBootTest
 class UserRoleManagementServiceApplicationTests {
 
 	@Mock

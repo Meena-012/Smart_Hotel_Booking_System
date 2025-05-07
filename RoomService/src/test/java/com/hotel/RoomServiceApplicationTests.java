@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.hotel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,7 +13,7 @@ import com.hotel.model.Room;
 import com.hotel.repository.RoomRepository;
 import com.hotel.service.RoomServiceImpl;
 
-@SpringBootTest(classes = RoomServiceApplication.class)
+@SpringBootTest
 class RoomServiceApplicationTests {
 
 	@Mock
