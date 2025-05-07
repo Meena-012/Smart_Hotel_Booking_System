@@ -44,6 +44,11 @@ public class HotelController {
 	public HotelRoomResponseDTO fetchHotelById(@PathVariable("hid") int id)throws HotelNotFoundException , RoomNotFound{
 		return service.fetchHotelById(id);
 	}
+	
+	@GetMapping("/fetchHotelById/{hid}")
+	public Hotels fetchById(@PathVariable("hid") int id)throws HotelNotFoundException , RoomNotFound{
+		return service.fetchById(id);
+	}
 
 	@GetMapping("/getAllHotel")
 	public List<Hotels> getAllHotel() {

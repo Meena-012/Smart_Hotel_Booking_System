@@ -38,6 +38,8 @@ public class Hotels {
     private int roomId;
 
     private String amenities;
+    
+    private int roomCount;
 
     @Min(value = 1, message = "Rating must be at least 1")
     @Max(value = 5, message = "Rating must not exceed 5")

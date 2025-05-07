@@ -1,6 +1,7 @@
 package com.hotel.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,11 +63,16 @@ public class HotelServiceImpl implements HotelService {
 		Room rm=roomClient.getRoomById(room);
 		HotelRoomResponseDTO responseDTO = new HotelRoomResponseDTO(hotel, rm);
 		return responseDTO;
-//		Optional<Hotels> optional = repository.findById(id);
-//		if (optional.isPresent())
-//			return optional.get();
-//		else
-//			throw new HotelNotFoundException("HotelId is invalid");
+		
+	}
+	
+	@Override
+	public Hotels fetchById(int id) throws HotelNotFoundException {
+		Optional<Hotels> optional = repository.findById(id);
+		if (optional.isPresent())
+			return optional.get();
+		else
+			throw new HotelNotFoundException("HotelId is invalid");
 	}
 
 	@Override

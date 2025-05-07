@@ -19,4 +19,6 @@ public interface HotelService {
 
 	public abstract List<Hotels> getAllHotel();
 
+	Hotels fetchById(int id) throws HotelNotFoundException;
+
 }
