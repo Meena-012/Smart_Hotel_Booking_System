@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.hotel.dto.HotelRoomResponseDTO;
 import com.hotel.dto.Hotels;
 import com.hotel.exception.HotelNotFoundException;
 import com.hotel.exception.RoomNotFound;
@@ -19,6 +18,7 @@ public interface RoomAvailablity {
 	
 	@GetMapping("/fetchHotelById/{hid}")
 	public Hotels fetchHotelById(@PathVariable("hid") int id)throws HotelNotFoundException , RoomNotFound;
+
 
 
 }

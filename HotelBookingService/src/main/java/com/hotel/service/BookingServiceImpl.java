@@ -108,6 +108,4 @@ public class BookingServiceImpl implements BookingService {
 	public List<Booking> findByUserIdAndStatus(int userId, String status) {
 	    return repository.findByUserIdAndStatus(userId, status);
 	}
-
-
 }

@@ -43,7 +43,7 @@ public class ReviewServiceImpl implements ReviewService {
 		log.info("In ReviewServiceImpl updateReview method...");
 		Review updatedReview = repository.save(review);
 		if (updatedReview != null) {
-			return "Review Information Updated Successfully!";
+			return "Review Information Updated Successfully!!";
 		} else {
 			return "Something Went Wrong with Review Update";
 		}

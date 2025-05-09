@@ -1,0 +1,57 @@
+2025-05-09T14:27:27.336+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.hotel.ReviewManagementApplication    : Starting ReviewManagementApplication using Java 21.0.6 with PID 52512 (C:\Users\2401063\git\shbs\ReviewManagement\target\classes started by 2401063 in C:\Users\2401063\git\shbs\ReviewManagement)
+2025-05-09T14:27:27.337+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.hotel.ReviewManagementApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-05-09T14:27:27.340+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2025-05-09T14:27:27.341+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=ReviewManagement, profiles=[default], label=null, version=1e010d799c56a557590d147f0ffc5cbb104507f3, state=
+2025-05-09T14:27:27.780+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-09T14:27:27.798+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 1 JPA repository interface.
+2025-05-09T14:27:27.945+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=dc877459-38b7-3f84-8681-a35cfa0f71cb
+2025-05-09T14:27:28.116+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2025-05-09T14:27:28.143+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-09T14:27:28.143+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-09T14:27:28.229+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-09T14:27:28.229+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 888 ms
+2025-05-09T14:27:28.293+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-09T14:27:28.299+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-09T14:27:28.319+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-09T14:27:28.321+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-05-09T14:27:28.342+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71f6b7ce
+2025-05-09T14:27:28.342+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-05-09T14:27:28.352+05:30  WARN 52512 --- [ReviewManagement] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-09T14:27:28.352+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 8.0.41
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-09T14:27:28.463+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-09T14:27:28.492+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-09T14:27:28.581+05:30  WARN 52512 --- [ReviewManagement] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-09T14:27:28.591+05:30  WARN 52512 --- [ReviewManagement] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2025-05-09T14:27:28.614+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.s.c.openfeign.FeignClientFactoryBean   : For 'USERROLEMANAGEMENTSERVICE' URL not provided. Will try picking an instance via load-balancing.
+2025-05-09T14:27:28.785+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2025-05-09T14:27:28.793+05:30  WARN 52512 --- [ReviewManagement] [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-05-09T14:27:28.811+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2025-05-09T14:27:28.813+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2025-05-09T14:27:28.813+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-09T14:27:28.813+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2025-05-09T14:27:28.813+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2025-05-09T14:27:28.813+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2025-05-09T14:27:28.813+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2025-05-09T14:27:28.813+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2025-05-09T14:27:28.813+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2025-05-09T14:27:28.813+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2025-05-09T14:27:28.833+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2025-05-09T14:27:28.834+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2025-05-09T14:27:28.834+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-05-09T14:27:28.834+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1746781048834 with initial instances count: 4
+2025-05-09T14:27:28.836+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application REVIEWMANAGEMENT with eureka with status UP
+2025-05-09T14:27:28.836+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1746781048836, current=UP, previous=STARTING]
+2025-05-09T14:27:28.836+05:30  INFO 52512 --- [ReviewManagement] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_REVIEWMANAGEMENT/LTIN604034.cts.com:ReviewManagement:8086: registering service...
+2025-05-09T14:27:28.841+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2025-05-09T14:27:28.842+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8086
+2025-05-09T14:27:28.849+05:30  INFO 52512 --- [ReviewManagement] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_REVIEWMANAGEMENT/LTIN604034.cts.com:ReviewManagement:8086 - registration status: 204
+2025-05-09T14:27:28.854+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] com.hotel.ReviewManagementApplication    : Started ReviewManagementApplication in 2.664 seconds (process running for 87878.323)
+2025-05-09T14:27:28.856+05:30  INFO 52512 --- [ReviewManagement] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-05-09T14:32:28.816+05:30  INFO 52512 --- [ReviewManagement] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

@@ -1,0 +1,56 @@
+2025-05-09T14:27:17.302+05:30  INFO 64016 --- [RoomService] [restartedMain] com.hotel.RoomServiceApplication         : Starting RoomServiceApplication using Java 21.0.6 with PID 64016 (C:\Users\2401063\git\shbs\RoomService\target\classes started by 2401063 in C:\Users\2401063\git\shbs\RoomService)
+2025-05-09T14:27:17.303+05:30  INFO 64016 --- [RoomService] [restartedMain] com.hotel.RoomServiceApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-05-09T14:27:17.312+05:30  INFO 64016 --- [RoomService] [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2025-05-09T14:27:17.313+05:30  INFO 64016 --- [RoomService] [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=RoomService, profiles=[default], label=null, version=1e010d799c56a557590d147f0ffc5cbb104507f3, state=
+2025-05-09T14:27:18.058+05:30  INFO 64016 --- [RoomService] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-09T14:27:18.089+05:30  INFO 64016 --- [RoomService] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 1 JPA repository interface.
+2025-05-09T14:27:18.299+05:30  INFO 64016 --- [RoomService] [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=75976457-5d2c-3e2c-b891-e96fab566f09
+2025-05-09T14:27:18.588+05:30  INFO 64016 --- [RoomService] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8083 (http)
+2025-05-09T14:27:18.592+05:30  INFO 64016 --- [RoomService] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-09T14:27:18.592+05:30  INFO 64016 --- [RoomService] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-09T14:27:18.712+05:30  INFO 64016 --- [RoomService] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2025-05-09T14:27:18.712+05:30  INFO 64016 --- [RoomService] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1399 ms
+2025-05-09T14:27:18.777+05:30  INFO 64016 --- [RoomService] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-09T14:27:18.780+05:30  INFO 64016 --- [RoomService] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-09T14:27:18.799+05:30  INFO 64016 --- [RoomService] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-09T14:27:18.801+05:30  INFO 64016 --- [RoomService] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Starting...
+2025-05-09T14:27:18.815+05:30  INFO 64016 --- [RoomService] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-12 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4d00590b
+2025-05-09T14:27:18.816+05:30  INFO 64016 --- [RoomService] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Start completed.
+2025-05-09T14:27:18.820+05:30  WARN 64016 --- [RoomService] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-09T14:27:18.821+05:30  INFO 64016 --- [RoomService] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-12)']
+	Database driver: undefined/unknown
+	Database version: 8.0.41
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-09T14:27:18.945+05:30  INFO 64016 --- [RoomService] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-09T14:27:18.963+05:30  INFO 64016 --- [RoomService] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-09T14:27:19.089+05:30  WARN 64016 --- [RoomService] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-09T14:27:19.263+05:30  WARN 64016 --- [RoomService] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2025-05-09T14:27:19.299+05:30  INFO 64016 --- [RoomService] [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2025-05-09T14:27:19.329+05:30  WARN 64016 --- [RoomService] [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-05-09T14:27:19.364+05:30  INFO 64016 --- [RoomService] [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2025-05-09T14:27:19.366+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2025-05-09T14:27:19.366+05:30  INFO 64016 --- [RoomService] [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-05-09T14:27:19.367+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2025-05-09T14:27:19.367+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2025-05-09T14:27:19.367+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2025-05-09T14:27:19.367+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2025-05-09T14:27:19.367+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2025-05-09T14:27:19.367+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2025-05-09T14:27:19.367+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2025-05-09T14:27:19.396+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2025-05-09T14:27:19.396+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2025-05-09T14:27:19.397+05:30  INFO 64016 --- [RoomService] [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-05-09T14:27:19.397+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1746781039397 with initial instances count: 5
+2025-05-09T14:27:19.398+05:30  INFO 64016 --- [RoomService] [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application ROOMSERVICE with eureka with status UP
+2025-05-09T14:27:19.398+05:30  INFO 64016 --- [RoomService] [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1746781039398, current=UP, previous=STARTING]
+2025-05-09T14:27:19.398+05:30  INFO 64016 --- [RoomService] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ROOMSERVICE/LTIN604034.cts.com:RoomService:8083: registering service...
+2025-05-09T14:27:19.402+05:30  INFO 64016 --- [RoomService] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2025-05-09T14:27:19.403+05:30  INFO 64016 --- [RoomService] [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8083
+2025-05-09T14:27:19.410+05:30  INFO 64016 --- [RoomService] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ROOMSERVICE/LTIN604034.cts.com:RoomService:8083 - registration status: 204
+2025-05-09T14:27:19.413+05:30  INFO 64016 --- [RoomService] [restartedMain] com.hotel.RoomServiceApplication         : Started RoomServiceApplication in 3.358 seconds (process running for 78269.843)
+2025-05-09T14:27:19.415+05:30  INFO 64016 --- [RoomService] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-05-09T14:32:19.377+05:30  INFO 64016 --- [RoomService] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
