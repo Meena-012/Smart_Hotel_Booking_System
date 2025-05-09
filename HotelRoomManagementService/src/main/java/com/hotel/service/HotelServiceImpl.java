@@ -1,5 +1,6 @@
 package com.hotel.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.hotel.dto.HotelRoomResponseDTO;
 import com.hotel.dto.Room;
 import com.hotel.exception.HotelNotFoundException;
-import com.hotel.exception.RoomNotFound;
 import com.hotel.model.Hotels;
 import com.hotel.openFeign.RoomClient;
 import com.hotel.repository.HotelRepository;
@@ -23,7 +23,7 @@ public class HotelServiceImpl implements HotelService {
 
 	@Autowired
 	HotelRepository repository;
-	
+
 	@Autowired
 	RoomClient roomClient;
 
@@ -33,7 +33,7 @@ public class HotelServiceImpl implements HotelService {
 		Hotels hotels = repository.save(hotel);
 		if (hotels != null)
 			return "Hotel Information Saved Successfully!!!";
-		else 
+		else
 			return "Hotel Information Doesn't Saved";
 	}
 
@@ -56,16 +56,23 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public HotelRoomResponseDTO fetchHotelById(int id) throws HotelNotFoundException,RoomNotFound {
+	public HotelRoomResponseDTO fetchHotelById(int id) throws HotelNotFoundException {
 		log.info("In HotelServiceImpl fetchById method...");
-		Hotels hotel=repository.findById(id).get();
-		int room=hotel.getRoomId();
-		Room rm=roomClient.getRoomById(room);
-		HotelRoomResponseDTO responseDTO = new HotelRoomResponseDTO(hotel, rm);
-		return responseDTO;
-		
+		Optional<Hotels> hotel = repository.findById(id);
+		if (hotel.isPresent()) {
+			List<Room> rooms = roomClient.getAllRooms();
+			List<Room> list = new ArrayList<>(); // Initialize the list
+			for (Room room : rooms) {
+				if (room.getHotelId() == id) { // Assuming room.getHotelId() instead of room.getRoomId()
+					list.add(room);
+				}
+			}
+			return new HotelRoomResponseDTO(hotel.get(), list);
+		} else {
+			throw new HotelNotFoundException("HotelId is invalid");
+		}
 	}
-	
+
 	@Override
 	public Hotels fetchById(int id) throws HotelNotFoundException {
 		Optional<Hotels> optional = repository.findById(id);
@@ -79,6 +86,24 @@ public class HotelServiceImpl implements HotelService {
 	public List<Hotels> getAllHotel() {
 		log.info("In HotelServiceImpl getAllHotel method...");
 		return repository.findAll();
+	}
+
+	@Override
+	public List<Hotels> findByLocation(String Location) {
+		return repository.findByLocation(Location);
+	}
+
+	@Override
+	public List<Hotels> getHotelByRatingGreaterThan(int rating) {
+		if (rating > 5) {
+			throw new IllegalArgumentException("Rating should be greater than 0 and less than 6");
+		}
+		return repository.getHotelByRatingGreaterThan(rating);
+	}
+
+	@Override
+	public List<Hotels> findByHotelName(String hotelName) {
+		return repository.findByHotelName(hotelName);
 	}
 
 }

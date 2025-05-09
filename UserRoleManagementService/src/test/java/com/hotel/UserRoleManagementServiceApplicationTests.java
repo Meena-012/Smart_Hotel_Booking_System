@@ -2,12 +2,15 @@ package com.hotel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.hotel.exception.UserNotFound;
 import com.hotel.model.UserRole;
 import com.hotel.repository.UserRoleRepository;
 import com.hotel.service.UserRoleServiceImpl;
@@ -29,4 +32,13 @@ class UserRoleManagementServiceApplicationTests {
 		assertEquals("User saved Successfully!!", response);
 
 	}
+	
+	@Test
+	void getUserTest() throws UserNotFound {
+	    UserRole userRole = new UserRole();
+	    Mockito.when(repository.findById(1)).thenReturn(Optional.of(userRole));
+	    UserRole response = service.getUser(1);
+	    assertEquals(userRole, response);
+	}
+
 }

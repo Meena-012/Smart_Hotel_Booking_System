@@ -7,10 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.hotel.exception.UserNotFound;
 import com.hotel.model.UserRole;
 import com.hotel.repository.UserRoleRepository;
+
+import jakarta.validation.Valid;
 
 @Service("employeeService")
 public class UserRoleServiceImpl implements UserRoleService {
@@ -21,7 +24,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 	UserRoleRepository repository;
 
 	@Override
-	public String addUser(UserRole user) {
+	public String addUser( UserRole user) {
 		log.info("In UserRoleServiceImpl addUser method...");
 		UserRole users = repository.save(user);
 		if (users != null)
@@ -32,7 +35,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 	}
 
 	@Override
-	public String updateUser(UserRole user) {
+	public String updateUser( UserRole user) {
 		log.info("In UserRoleServiceImpl updateUser method...");
 		UserRole users = repository.save(user);
 		if (users != null)
@@ -42,14 +45,14 @@ public class UserRoleServiceImpl implements UserRoleService {
 	}
 
 	@Override
-	public String deleteUser(int userId) {
+	public String deleteUser(@Valid int userId) {
 		log.info("In UserRoleServiceImpl deleteUser method...");
 		repository.deleteById(userId);
 		return "User Deleted Successfully";
 	}
 
 	@Override
-	public UserRole getUser(int userId) throws UserNotFound {
+	public UserRole getUser(@Valid int userId) throws UserNotFound {
 		log.info("In UserRoleServiceImpl getUser method...");
 		Optional<UserRole> optional = repository.findById(userId);
 		if (optional.isPresent())

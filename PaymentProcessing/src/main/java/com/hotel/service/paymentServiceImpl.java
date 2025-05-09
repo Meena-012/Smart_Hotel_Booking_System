@@ -45,22 +45,6 @@ public class paymentServiceImpl implements paymentService {
 		}
 	}
 
-	@Override
-	public String updatePayment(payment payment) {
-		log.info("In paymentServiceImpl updatepayment method...");
-		payment payments = repository.save(payment);
-		if (payments != null)
-			return "payment Information Updated Successfully!!";
-		else
-			return "Something Wrong with payment Update";
-	}
-
-	@Override
-	public String deletePayment(int paymentId) {
-		log.info("In paymentServiceImpl deletepayment method...");
-		repository.deleteById(paymentId);
-		return "payment Deleted Successfully";
-	}
 
 	@Override
 	public payment getPaymentById(int id) throws paymentNotFound {
@@ -76,4 +60,6 @@ public class paymentServiceImpl implements paymentService {
 		log.info("In paymentServiceImpl getAllpayments method...");
 		return repository.findAll();
 	}
+
+	
 }

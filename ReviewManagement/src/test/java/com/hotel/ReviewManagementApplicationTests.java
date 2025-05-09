@@ -2,6 +2,9 @@ package com.hotel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -22,7 +25,8 @@ class ReviewManagementApplicationTests {
 
     @Test
     void reviewTest() {
-        Review review = new Review(1, 101, 202, "Great service!", 5, System.currentTimeMillis() / 1000L);
+    	LocalDateTime now = LocalDateTime.now();
+        Review review = new Review(1, 101, 202, "Great service!", 5,now );
         Mockito.when(repository.save(review)).thenReturn(review);
         String response = service.addReview(review);
         assertEquals("Review Added Successfully!!!", response);

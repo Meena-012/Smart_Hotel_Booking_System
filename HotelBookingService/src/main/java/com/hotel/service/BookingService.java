@@ -1,5 +1,6 @@
 package com.hotel.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.hotel.exception.BookingNotFound;
@@ -18,5 +19,12 @@ public interface BookingService {
 	public abstract Booking getBookingById(int id) throws BookingNotFound;
 
 	public abstract List<Booking> getAllBooking();
+	
+	public abstract List<Booking> findByStatus(String status);
 
+	public abstract List<Booking> findByCheckInDateAfter(LocalDate date);
+	
+	public abstract List<Booking> findByCheckOutDateBefore(LocalDate date);
+
+	public abstract List<Booking> findByUserIdAndStatus(int userId, String status);
 }

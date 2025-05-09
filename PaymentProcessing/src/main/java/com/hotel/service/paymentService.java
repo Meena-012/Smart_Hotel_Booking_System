@@ -10,10 +10,6 @@ public interface paymentService {
 
 	public abstract String addPayment(payment payment)throws BookingNotFound;
 
-	public abstract String updatePayment(payment payment);
-
-	public abstract String deletePayment(int paymentId);
-
 	public abstract payment getPaymentById(int id) throws paymentNotFound;
 
 	public abstract List<payment> getAllPayments();

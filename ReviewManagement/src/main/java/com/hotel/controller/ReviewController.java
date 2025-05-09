@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hotel.dto.ReviewUserResponseDTO;
 import com.hotel.exception.ReviewNotFound;
+import com.hotel.exception.UserNotFound;
 import com.hotel.model.Review;
 import com.hotel.service.ReviewService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/review")
@@ -24,12 +28,12 @@ public class ReviewController {
     ReviewService service;
     
     @PostMapping("/saveReview")
-    public String addReview(@RequestBody Review review) {
+    public String addReview(@Valid @RequestBody Review review) {
         return service.addReview(review);
     }
 
     @PutMapping("/updateReview")
-    public String updateReview(@RequestBody Review review) {
+    public String updateReview(@Valid @RequestBody Review review) {
         return service.updateReview(review);
     }
 
@@ -39,7 +43,7 @@ public class ReviewController {
     }
 
     @GetMapping("/fetchById/{rid}")
-    public Review getReviewById(@PathVariable("rid") int reviewId) throws ReviewNotFound {
+    public ReviewUserResponseDTO getReviewById(@PathVariable("rid") int reviewId) throws ReviewNotFound,UserNotFound{
         return service.getReviewById(reviewId);
     }
 

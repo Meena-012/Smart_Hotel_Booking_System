@@ -11,13 +11,13 @@ import com.hotel.dto.Hotels;
 import com.hotel.exception.HotelNotFoundException;
 import com.hotel.exception.RoomNotFound;
 
-@FeignClient(name="HOTELROOMMANAGEMENTSERVICE" , url="http://localhost:8082")
+@FeignClient(name="HOTELROOMMANAGEMENTSERVICE" , path="/hotel")
 public interface RoomAvailablity {
 	
-	@PutMapping("hotel/updateHotel")
+	@PutMapping("/updateHotel")
 	public String updateHotel(@RequestBody Hotels hotel);
 	
-	@GetMapping("hotel/fetchHotelById/{hid}")
+	@GetMapping("/fetchHotelById/{hid}")
 	public Hotels fetchHotelById(@PathVariable("hid") int id)throws HotelNotFoundException , RoomNotFound;
 
 

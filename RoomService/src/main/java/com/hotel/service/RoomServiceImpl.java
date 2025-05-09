@@ -5,10 +5,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.hotel.exception.RoomNotFound;
 import com.hotel.model.Room;
 import com.hotel.repository.RoomRepository;
+
+import jakarta.validation.Valid;
 
 @Service("roomService")
 public class RoomServiceImpl implements RoomService {
@@ -52,6 +55,22 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public List<Room> getAllRooms() {
 		return repository.findAll();
+	}
+
+	@Override
+	public List<Room> findByType(String type) {
+		return repository.findByType(type);
+	}
+
+	@Override
+	public List<Room> findByPriceLessThan(double price) {
+		return repository.findByPriceLessThan(price);
+	}
+
+	@Override
+	public List<Room> findByFeaturesContaining(String features) {
+		return repository.findByFeaturesContaining(features);
+
 	}
 
 }

@@ -15,10 +15,16 @@ public interface HotelService {
 
 	public abstract String deleteHotel(int id);
 
-	public abstract HotelRoomResponseDTO fetchHotelById(int id) throws HotelNotFoundException,RoomNotFound;
+	public abstract HotelRoomResponseDTO fetchHotelById(int id) throws HotelNotFoundException, RoomNotFound;
 
 	public abstract List<Hotels> getAllHotel();
 
 	Hotels fetchById(int id) throws HotelNotFoundException;
+
+	public abstract List<Hotels> findByLocation(String Location);
+	
+	public abstract List<Hotels> getHotelByRatingGreaterThan(int rating);
+	
+	public abstract List<Hotels> findByHotelName(String hotelName);
 
 }

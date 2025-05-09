@@ -16,6 +16,8 @@ import com.hotel.exception.UserNotFound;
 import com.hotel.model.UserRole;
 import com.hotel.service.UserRoleService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -24,17 +26,17 @@ public class UserController {
 	UserRoleService service;
 
 	@PostMapping("/saveuser")
-	public String addUser(@RequestBody UserRole user) {
+	public String addUser(@Valid @RequestBody UserRole user) {
 		return service.addUser(user);
 	}
 
 	@PutMapping("/updateuser")
-	public String updateUser(@RequestBody UserRole user) {
+	public String updateUser(@Valid @RequestBody UserRole user) {
 		return service.updateUser(user);
 	}
 
 	@DeleteMapping("/deleteuser/{did}")
-	public String deleteUser(@PathVariable("did") int userId) {
+	public String deleteUser( @PathVariable("did") int userId) {
 		return service.deleteUser(userId);
 	}
 

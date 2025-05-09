@@ -41,6 +41,17 @@ public class CustomGlobalExceptionHandler {
 
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_ACCEPTABLE);
 	}
+	@ExceptionHandler(value = ReviewNotFound.class)
+	public ResponseEntity<ExceptionResponse> handleAdminRegistrationException1(UserNotFound exception,
+			WebRequest webRequest) {
+
+		ExceptionResponse exceptionResponse = new ExceptionResponse();
+		exceptionResponse.setStatus(404);
+		exceptionResponse.setTime(LocalDateTime.now());
+		exceptionResponse.setMessage(exception.getMessage());
+
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_ACCEPTABLE);
+	}
 
 	@ExceptionHandler(value = Exception.class)
 	public ResponseEntity<ExceptionResponse> handleAccountIdException(Exception exception, WebRequest webRequest) {

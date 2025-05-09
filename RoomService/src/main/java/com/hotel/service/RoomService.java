@@ -16,4 +16,11 @@ public interface RoomService {
 	public abstract Room getRoomById(int roomId) throws RoomNotFound;
 
 	public abstract List<Room> getAllRooms();
+
+	public abstract List<Room> findByType(String type);
+
+	public abstract List<Room> findByPriceLessThan(double price);
+	
+	public abstract List<Room> findByFeaturesContaining(String keyword);
+
 }

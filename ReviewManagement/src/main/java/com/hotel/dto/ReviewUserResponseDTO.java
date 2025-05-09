@@ -1,18 +1,16 @@
 package com.hotel.dto;
 
-import java.util.List;
-
-import com.hotel.model.Hotels;
+import com.hotel.model.Review;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class HotelRoomResponseDTO {
-	private Hotels hotel;
-	private List<Room> room;
+public class ReviewUserResponseDTO {
+	private Review review;
+	private UserRole user;
 
 }

@@ -17,6 +17,8 @@ import com.hotel.exception.paymentNotFound;
 import com.hotel.model.payment;
 import com.hotel.service.paymentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/payment")
 public class paymentController {
@@ -25,18 +27,8 @@ public class paymentController {
     paymentService service;
 
     @PostMapping("/savePayment")
-    public String addPayment(@RequestBody payment payment) throws BookingNotFound {
+    public String addPayment(@Valid @RequestBody payment payment) throws BookingNotFound {
         return service.addPayment(payment);
-    }
-
-    @PutMapping("/updatePayment")
-    public String updatePayment(@RequestBody payment payment) {
-        return service.updatePayment(payment);
-    }
-
-    @DeleteMapping("/deletePayment/{pid}")
-    public String deletePayment(@PathVariable("pid") int paymentId) {
-        return service.deletePayment(paymentId);
     }
 
     @GetMapping("/fetchById/{pid}")

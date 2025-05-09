@@ -16,6 +16,8 @@ import com.hotel.exception.RoomNotFound;
 import com.hotel.model.Room;
 import com.hotel.service.RoomService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/rooms")
 public class RoomController {
@@ -24,12 +26,12 @@ public class RoomController {
 	RoomService service;
 
 	@PostMapping("/addRoom")
-	public String addRoom(@RequestBody Room room) {
+	public String addRoom(@Valid @RequestBody Room room) {
 		return service.addRoom(room);
 	}
 
 	@PutMapping("/updateRoom")
-	public String updateRoom(@RequestBody Room room) {
+	public String updateRoom(@Valid @RequestBody Room room) {
 		return service.updateRoom(room);
 	}
 
@@ -46,6 +48,22 @@ public class RoomController {
 	@GetMapping("/fetchAllRooms")
 	public List<Room> getAllRooms() {
 		return service.getAllRooms();
+	}
+
+
+	@GetMapping("/getRoomsByType/{type}")
+	public List<Room> getRoomsByType(@PathVariable("type") String type) {
+		return service.findByType(type);
+	}
+	
+	@GetMapping("/PriceLessThan/{price}")
+	public List<Room> getRoomsByPriceLessThan(@PathVariable("price") double price) {
+		return service.findByPriceLessThan(price);
+	}
+	
+	@GetMapping("/featuresContaining/{features}")
+	public List<Room> getRoomsByFeaturesContaining(@PathVariable("features") String features) {
+		return service.findByFeaturesContaining(features);
 	}
 
 }

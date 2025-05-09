@@ -37,8 +37,6 @@ public class Room {
     @Positive(message = "Price must be a positive number")
     private double price; // Price per night for the room
 
-    private boolean availability; // Availability status (true = available, false = booked)
-
     @NotEmpty(message = "Features cannot be empty")
     @Size(min = 5, max = 300, message = "Features must be between 5 and 300 characters")
     private String features; // Additional features (AC, TV, Balcony, Sea View)

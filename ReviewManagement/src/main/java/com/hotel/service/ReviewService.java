@@ -2,7 +2,9 @@ package com.hotel.service;
 
 import java.util.List;
 
+import com.hotel.dto.ReviewUserResponseDTO;
 import com.hotel.exception.ReviewNotFound;
+import com.hotel.exception.UserNotFound;
 import com.hotel.model.Review;
 
 public interface ReviewService {
@@ -13,7 +15,7 @@ public interface ReviewService {
 
 	public abstract String deleteReview(int reviewId);
 
-	public abstract Review getReviewById(int id) throws ReviewNotFound;
+	public abstract ReviewUserResponseDTO getReviewById(int id) throws ReviewNotFound,UserNotFound;
 
 	public abstract List<Review> getAllReviews();
 

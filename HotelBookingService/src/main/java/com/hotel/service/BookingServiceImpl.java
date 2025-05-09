@@ -1,5 +1,6 @@
 package com.hotel.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,5 +86,28 @@ public class BookingServiceImpl implements BookingService {
 		log.info("In BookingServiceImpl getAllUser method...");
 		return repository.findAll();
 	}
+
+
+	@Override
+	public List<Booking> findByStatus(String status) {
+		return repository.findByStatus(status);
+	}
+
+
+	@Override
+	public List<Booking> findByCheckInDateAfter(LocalDate date) {
+	    return repository.findByCheckInDateAfter(date);
+	}
+
+	@Override
+	public List<Booking> findByCheckOutDateBefore(LocalDate date) {
+	    return repository.findByCheckOutDateBefore(date);
+	}
+
+	@Override
+	public List<Booking> findByUserIdAndStatus(int userId, String status) {
+	    return repository.findByUserIdAndStatus(userId, status);
+	}
+
 
 }
