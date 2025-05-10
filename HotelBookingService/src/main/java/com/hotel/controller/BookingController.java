@@ -34,7 +34,7 @@ public class BookingController {
 	}
 
 	@PutMapping("/updateBooking")
-	public String updateBooking(@Valid @RequestBody Booking user) {
+	public String updateBooking(@Valid @RequestBody Booking user) throws HotelNotFoundException, RoomNotFound {
 		return service.updateBooking(user);
 	}
 

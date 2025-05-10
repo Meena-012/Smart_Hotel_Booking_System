@@ -16,6 +16,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "user_info")
+
+/*
+Entity class representing a user in the hotel booking system. Maps to the
+"user_info" table in the database.
+*/
+
 public class UserRole {
 	@Id
 	@NotNull(message = "User Id cannot be Null")

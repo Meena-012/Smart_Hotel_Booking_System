@@ -15,20 +15,19 @@ import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
 public class CustomGlobalExceptionHandler {
-	
+
 	@ExceptionHandler(value = MethodArgumentNotValidException.class)
 	public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
- 
+
 		Map<String, Object> body = new HashMap<>();
 		body.put("timestamp", new Date());
 		// Get all errors
 		ex.getBindingResult().getAllErrors().forEach(error -> {
-				body.put(((FieldError)error).getField(),error.getDefaultMessage());
-			});
-		return new ResponseEntity<Object>(body, HttpStatus.BAD_REQUEST);
- 
+			body.put(((FieldError) error).getField(), error.getDefaultMessage());
+		});
+		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+
 	}
- 
 
 	@ExceptionHandler(value = UserNotFound.class)
 	public ResponseEntity<ExceptionResponse> handleAdminRegistrationException(UserNotFound exception,

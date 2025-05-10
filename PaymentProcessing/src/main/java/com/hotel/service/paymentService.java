@@ -13,5 +13,7 @@ public interface paymentService {
 	public abstract payment getPaymentById(int id) throws paymentNotFound;
 
 	public abstract List<payment> getAllPayments();
+	
+	public abstract String cancelPayment(payment pay) throws BookingNotFound,paymentNotFound;
 
 }

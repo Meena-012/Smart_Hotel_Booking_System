@@ -23,7 +23,7 @@ public interface HotelService {
 
 	public abstract List<Hotels> findByLocation(String Location);
 	
-	public abstract List<Hotels> getHotelByRatingGreaterThan(int rating);
+	//public abstract List<Hotels> getHotelByRatingGreaterThan(int rating);
 	
 	public abstract List<Hotels> findByHotelName(String hotelName);
 

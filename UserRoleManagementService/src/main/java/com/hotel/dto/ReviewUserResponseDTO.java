@@ -1,5 +1,5 @@
-package com.hotel.dto;
-
-public class ReviewUserResponseDTO {
-
-}
+//package com.hotel.dto;
+//
+//public class ReviewUserResponseDTO {
+//
+//}

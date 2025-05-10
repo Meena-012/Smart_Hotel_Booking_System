@@ -45,7 +45,6 @@ public class paymentServiceImpl implements paymentService {
 		}
 	}
 
-
 	@Override
 	public payment getPaymentById(int id) throws paymentNotFound {
 		Optional<payment> optional = repository.findById(id);
@@ -61,5 +60,25 @@ public class paymentServiceImpl implements paymentService {
 		return repository.findAll();
 	}
 
-	
+	@Override
+	public String cancelPayment(payment pay) throws BookingNotFound, paymentNotFound {
+		int paymentId = pay.getPaymentId();
+		Optional<payment> pay1 = repository.findById(paymentId);
+		if (pay1 != null) {
+			String payStatus = pay1.get().getStatus();
+			if (payStatus.equals("Completed")) {
+				int bookingId = pay1.get().getBookingId();
+				Booking book = bookingClient.getBookingById(bookingId);
+				book.setStatus("Cancelled");
+				bookingClient.updateBooking(book);
+				return "Cancelled";
+			} else {
+				return "Payment Status is Not Completed";
+			}
+		} else {
+			throw new paymentNotFound("payment Id Not Found");
+		}
+
+	}
+
 }

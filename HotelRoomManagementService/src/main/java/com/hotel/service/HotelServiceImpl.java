@@ -93,13 +93,13 @@ public class HotelServiceImpl implements HotelService {
 		return repository.findByLocation(Location);
 	}
 
-	@Override
-	public List<Hotels> getHotelByRatingGreaterThan(int rating) {
-		if (rating > 5) {
-			throw new IllegalArgumentException("Rating should be greater than 0 and less than 6");
-		}
-		return repository.getHotelByRatingGreaterThan(rating);
-	}
+//	@Override
+//	public List<Hotels> getHotelByRatingGreaterThan(int rating) {
+//		if (rating > 5) {
+//			throw new IllegalArgumentException("Rating should be greater than 0 and less than 6");
+//		}
+//		return repository.getHotelByRatingGreaterThan(rating);
+//	}
 
 	@Override
 	public List<Hotels> findByHotelName(String hotelName) {

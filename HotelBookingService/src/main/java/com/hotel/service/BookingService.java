@@ -12,7 +12,7 @@ public interface BookingService {
 
 	public abstract String addBooking(Booking booking)throws HotelNotFoundException, RoomNotFound;
 
-	public abstract String updateBooking(Booking booking);
+	public abstract String updateBooking(Booking booking)  throws HotelNotFoundException, RoomNotFound;
 
 	public abstract String deleteBooking(int bookingId);
 

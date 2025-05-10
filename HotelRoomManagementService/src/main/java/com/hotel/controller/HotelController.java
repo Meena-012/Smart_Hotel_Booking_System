@@ -62,10 +62,10 @@ public class HotelController {
 		return service.findByLocation(Location);
 	}
 	
-	@GetMapping("/getByRating/{rid}")
-	public List<Hotels> getHotelByRatingGreaterThan(@PathVariable("rid") int rating) {
-		return service.getHotelByRatingGreaterThan(rating);
-	}
+//	@GetMapping("/getByRating/{rid}")
+//	public List<Hotels> getHotelByRatingGreaterThan(@PathVariable("rid") int rating) {
+//		return service.getHotelByRatingGreaterThan(rating);
+//	}
 	
 	@GetMapping("/getByHotelName/{hotelName}")
 	public List<Hotels> getByHotelName(@PathVariable("hotelName") String hotelName){

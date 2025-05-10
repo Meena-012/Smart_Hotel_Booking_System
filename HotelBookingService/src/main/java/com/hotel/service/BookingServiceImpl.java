@@ -54,14 +54,29 @@ public class BookingServiceImpl implements BookingService {
 
 
 	@Override
-	public String updateBooking(Booking booking) {
-
+	public String updateBooking(Booking booking) throws HotelNotFoundException, RoomNotFound {
+		if(booking.getStatus().equals("Completed")) {
+			int hotelId=booking.getHotelId();
+			Hotels hotel=roomAvailablity.fetchHotelById(hotelId);
+			if(hotel!=null) {
+				int roomCount = hotel.getRoomCount();
+				roomCount=roomCount+1;
+				hotel.setRoomCount(roomCount);
+				roomAvailablity.updateHotel(hotel);
+				return "Increased Successfully";
+			}
+			else {
+				throw new HotelNotFoundException("Hotel Id Not Found");
+			}
+		}
+		else {
 		log.info("In BookingServiceImpl updateBooking method...");
 		Booking bookings = repository.save(booking);
 		if (bookings != null)
 			return "Booking Information Updated Successfully!!";
 		else
 			return "Something Wrong with Booking Update";
+	}
 	}
 
 	@Override
@@ -78,7 +93,7 @@ public class BookingServiceImpl implements BookingService {
 		if (optional.isPresent())
 			return optional.get();
 		else
-			throw new BookingNotFound("UserId is invalid");
+			throw new BookingNotFound("BookingId is invalid");
 	}
 
 	@Override

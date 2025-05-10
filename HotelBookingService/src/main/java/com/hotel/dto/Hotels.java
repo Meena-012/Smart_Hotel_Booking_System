@@ -15,6 +15,5 @@ public class Hotels {
     private int roomId;
     private String amenities;
     private int roomCount;
-    private int rating;
 
 }

@@ -26,7 +26,7 @@ import com.hotel.repository.BookingRepository;
 import com.hotel.service.BookingServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class HotelBookingServiceApplicationTests {
+class HotelBookingServiceApplicationTests {
 
 	@Mock
 	private BookingRepository repository;
@@ -40,7 +40,7 @@ public class HotelBookingServiceApplicationTests {
 	@Test
 	void addBookingSuccessTest() throws HotelNotFoundException, RoomNotFound {
 		Booking booking = new Booking(1, 101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2), "Pending");
-		Hotels hotel = new Hotels(301, "Taj", "Chennai", 1, 201, "Amenities", 2, 5);
+		Hotels hotel = new Hotels(301, "Taj", "Chennai", 1, 201, "Amenities", 2);
 		Mockito.when(roomAvailablity.fetchHotelById(301)).thenReturn(hotel);
 		Mockito.when(repository.save(booking)).thenReturn(booking);
 		String response=service.addBooking(booking);
@@ -57,7 +57,7 @@ public class HotelBookingServiceApplicationTests {
 	@Test
 	void addBookingRoomNotAvailableTest() throws HotelNotFoundException, RoomNotFound {
 		Booking booking = new Booking(1, 101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2), "Pending");
-		Hotels hotel = new Hotels(301, "Taj", "Chennai", 1, 201, "Amenities", 0, 5);
+		Hotels hotel = new Hotels(301, "Taj", "Chennai", 1, 201, "Amenities", 0);
 
 		Mockito.when(roomAvailablity.fetchHotelById(301)).thenReturn(hotel);
 		String response = service.addBooking(booking);
@@ -65,7 +65,7 @@ public class HotelBookingServiceApplicationTests {
 	}
 
 	@Test
-	void updateBookingTest() {
+	void updateBookingTest() throws HotelNotFoundException, RoomNotFound {
 		Booking booking = new Booking(1, 101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2), "Confirmed");
 		Mockito.when(repository.save(booking)).thenReturn(booking);
 		String response = service.updateBooking(booking);

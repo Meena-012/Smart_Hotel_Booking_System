@@ -118,14 +118,14 @@ public class HotelRoomManagementServiceApplicationTests {
         assertEquals(hotelList, response);
     }
 
-    @Test
-    void getHotelByRatingGreaterThanTest() {
-        Hotels hotel = new Hotels(102, "Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
-        List<Hotels> hotelList = Arrays.asList(hotel);
-        when(repository.getHotelByRatingGreaterThan(4)).thenReturn(hotelList);
-        List<Hotels> response = service.getHotelByRatingGreaterThan(4);
-        assertEquals(hotelList, response);
-    }
+//    @Test
+//    void getHotelByRatingGreaterThanTest() {
+//        Hotels hotel = new Hotels(102, "Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
+//        List<Hotels> hotelList = Arrays.asList(hotel);
+//        when(repository.getHotelByRatingGreaterThan(4)).thenReturn(hotelList);
+//        List<Hotels> response = service.getHotelByRatingGreaterThan(4);
+//        assertEquals(hotelList, response);
+//    }
 
     @Test
     void findByHotelNameTest() {
