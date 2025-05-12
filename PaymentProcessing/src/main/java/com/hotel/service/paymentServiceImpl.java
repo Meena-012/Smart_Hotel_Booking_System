@@ -24,10 +24,12 @@ public class paymentServiceImpl implements paymentService {
 	paymentRepository repository;
 
 	@Autowired
-	BookingClient bookingClient;
+	BookingClient bookingClient; 
 
 	@Override
 	public String addPayment(payment payment) throws BookingNotFound {
+		// Adds a new payment and updates the associated booking status.
+		// Throws BookingNotFound if the provided booking ID is invalid.
 		int bookingId = payment.getBookingId();
 		Booking booking = bookingClient.getBookingById(bookingId);
 		if (booking == null)
@@ -47,6 +49,8 @@ public class paymentServiceImpl implements paymentService {
 
 	@Override
 	public payment getPaymentById(int id) throws paymentNotFound {
+		// Retrieves a payment by its unique identifier.
+		// Throws paymentNotFound if no payment is found with the given ID.
 		Optional<payment> optional = repository.findById(id);
 		if (optional.isPresent())
 			return optional.get();
@@ -56,12 +60,15 @@ public class paymentServiceImpl implements paymentService {
 
 	@Override
 	public List<payment> getAllPayments() {
+		// Retrieves a list of all payments from the database.
 		log.info("In paymentServiceImpl getAllpayments method...");
 		return repository.findAll();
 	}
 
 	@Override
 	public String cancelPayment(payment pay) throws BookingNotFound, paymentNotFound {
+		// Cancels a payment and updates the associated booking status if the payment is completed.
+		// Throws BookingNotFound or paymentNotFound if the booking or payment ID is invalid.
 		int paymentId = pay.getPaymentId();
 		Optional<payment> pay1 = repository.findById(paymentId);
 		if (pay1 != null) {

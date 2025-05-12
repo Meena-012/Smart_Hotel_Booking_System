@@ -22,13 +22,14 @@ public class HotelServiceImpl implements HotelService {
 	Logger log = LoggerFactory.getLogger(HotelServiceImpl.class);
 
 	@Autowired
-	HotelRepository repository;
+	HotelRepository repository; // Interacts with the database for Hotel entities.
 
 	@Autowired
-	RoomClient roomClient;
+	RoomClient roomClient; // Communicates with the Room service.
 
 	@Override
 	public String saveHotel(Hotels hotel) {
+		// Saves a new hotel to the database and returns a status message.
 		log.info("In HotelServiceImpl saveHotel method...");
 		Hotels hotels = repository.save(hotel);
 		if (hotels != null)
@@ -39,6 +40,7 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public String updateHotel(Hotels hotel) {
+		// Updates an existing hotel in the database and returns a status message.
 		log.info("In HotelServiceImpl updateHotel method...");
 		Hotels hotels = repository.save(hotel);
 		if (hotels != null)
@@ -50,6 +52,7 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public String deleteHotel(int id) {
+		// Deletes a hotel from the database by its ID and returns a success message.
 		log.info("In HotelServiceImpl deleteHotel method...");
 		repository.deleteById(id);
 		return "Hotel Information Deleted Successfully";
@@ -57,13 +60,15 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public HotelRoomResponseDTO fetchHotelById(int id) throws HotelNotFoundException {
+		// Fetches a hotel by ID and then retrieves associated rooms from the Room service.
+		// Returns a DTO containing the hotel and its rooms.
 		log.info("In HotelServiceImpl fetchById method...");
 		Optional<Hotels> hotel = repository.findById(id);
 		if (hotel.isPresent()) {
 			List<Room> rooms = roomClient.getAllRooms();
-			List<Room> list = new ArrayList<>(); // Initialize the list
+			List<Room> list = new ArrayList<>();
 			for (Room room : rooms) {
-				if (room.getHotelId() == id) { // Assuming room.getHotelId() instead of room.getRoomId()
+				if (room.getHotelId() == id) {
 					list.add(room);
 				}
 			}
@@ -75,6 +80,8 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public Hotels fetchById(int id) throws HotelNotFoundException {
+		// Fetches a hotel by its ID.
+		// Throws HotelNotFoundException if the hotel ID is invalid.
 		Optional<Hotels> optional = repository.findById(id);
 		if (optional.isPresent())
 			return optional.get();
@@ -84,12 +91,14 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public List<Hotels> getAllHotel() {
+		// Retrieves all hotels from the database.
 		log.info("In HotelServiceImpl getAllHotel method...");
 		return repository.findAll();
 	}
 
 	@Override
 	public List<Hotels> findByLocation(String Location) {
+		// Finds hotels located in a specific location.
 		return repository.findByLocation(Location);
 	}
 
@@ -103,6 +112,7 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public List<Hotels> findByHotelName(String hotelName) {
+		// Finds hotels with a specific name.
 		return repository.findByHotelName(hotelName);
 	}
 

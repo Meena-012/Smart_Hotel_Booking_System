@@ -18,51 +18,62 @@ import com.hotel.service.RoomService;
 
 import jakarta.validation.Valid;
 
+//REST controller for managing room related operations.
+//Provides endpoints to add,update,delete,and retrieve users
 @RestController
 @RequestMapping("/rooms")
 public class RoomController {
 
 	@Autowired
-	RoomService service;
+	RoomService service; // Injecting RoomService dependency
 
 	@PostMapping("/addRoom")
-	public String addRoom(@Valid @RequestBody Room room) {
+	//@Valid is used the display the validation messages in postman
+	//@RequestBody is the annotation that directs Spring to process the HTTP request body.
+	// Endpoint to add a new room
+	public String addRoom(@Valid @RequestBody Room room) { 
 		return service.addRoom(room);
 	}
 
+	// Endpoint to update an existing room
 	@PutMapping("/updateRoom")
-	public String updateRoom(@Valid @RequestBody Room room) {
+	public String updateRoom(@Valid @RequestBody Room room) { 
 		return service.updateRoom(room);
 	}
 
 	@DeleteMapping("/deleteRoom/{did}")
-	public String deleteRoom(@PathVariable("did") int roomId) {
+	// Endpoint to delete a room by ID
+	public String deleteRoom(@PathVariable("did") int roomId) { 
 		return service.deleteRoom(roomId);
 	}
 
+	// Endpoint to fetch a room by ID
 	@GetMapping("/fetchById/{rid}")
-	public Room getRoomById(@PathVariable("rid") int roomId) throws RoomNotFound {
+	public Room getRoomById(@PathVariable("rid") int roomId) throws RoomNotFound { 
 		return service.getRoomById(roomId);
 	}
 
 	@GetMapping("/fetchAllRooms")
+	// Endpoint to fetch all rooms
 	public List<Room> getAllRooms() {
 		return service.getAllRooms();
 	}
 
-
 	@GetMapping("/getRoomsByType/{type}")
-	public List<Room> getRoomsByType(@PathVariable("type") String type) {
+	// Endpoint to fetch rooms by type
+	public List<Room> getRoomsByType(@PathVariable("type") String type) { 
 		return service.findByType(type);
 	}
-	
+
 	@GetMapping("/PriceLessThan/{price}")
-	public List<Room> getRoomsByPriceLessThan(@PathVariable("price") double price) {
+	// Endpoint to fetch rooms with price less than a given value
+	public List<Room> getRoomsByPriceLessThan(@PathVariable("price") double price) { 
 		return service.findByPriceLessThan(price);
 	}
-	
+
+	// Endpoint to fetch rooms with features containing a specific string
 	@GetMapping("/featuresContaining/{features}")
-	public List<Room> getRoomsByFeaturesContaining(@PathVariable("features") String features) {
+	public List<Room> getRoomsByFeaturesContaining(@PathVariable("features") String features) { 
 		return service.findByFeaturesContaining(features);
 	}
 

@@ -10,15 +10,16 @@ import com.hotel.dto.Hotels;
 import com.hotel.exception.HotelNotFoundException;
 import com.hotel.exception.RoomNotFound;
 
-@FeignClient(name="HOTELROOMMANAGEMENTSERVICE" , path="/hotel")
+// Declares this interface as a Feign client for the HOTELROOMMANAGEMENTSERVICE
+@FeignClient(name = "HOTELROOMMANAGEMENTSERVICE", path = "/hotel")
 public interface RoomAvailablity {
-	
+
+	// /hotel/updateHotel PUT endpoint to update hotel information
 	@PutMapping("/updateHotel")
 	public String updateHotel(@RequestBody Hotels hotel);
-	
+
+	// /hotel/fetchHotelById/{hid} GET endpoint to fetch hotel details by its ID
 	@GetMapping("/fetchHotelById/{hid}")
-	public Hotels fetchHotelById(@PathVariable("hid") int id)throws HotelNotFoundException , RoomNotFound;
-
-
+	public Hotels fetchHotelById(@PathVariable("hid") int id) throws HotelNotFoundException, RoomNotFound;
 
 }

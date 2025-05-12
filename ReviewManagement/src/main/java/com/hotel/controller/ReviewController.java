@@ -20,35 +20,41 @@ import com.hotel.service.ReviewService;
 
 import jakarta.validation.Valid;
 
-@RestController
-@RequestMapping("/review")
+@RestController // Indicates that this class is a REST controller, handling incoming web requests
+@RequestMapping("/review") // Maps HTTP requests with the base path "/review" to this controller
 public class ReviewController {
 
-    @Autowired
-    ReviewService service;
-    
-    @PostMapping("/saveReview")
-    public String addReview(@Valid @RequestBody Review review) {
-        return service.addReview(review);
-    }
+	// Automatically injects an instance of ReviewService
+	@Autowired
+	ReviewService service;
 
-    @PutMapping("/updateReview")
-    public String updateReview(@Valid @RequestBody Review review) {
-        return service.updateReview(review);
-    }
+	// Handles adding a new review
+	@PostMapping("/saveReview")
+	public String addReview(@Valid @RequestBody Review review) {
+		return service.addReview(review);
+	}
 
-    @DeleteMapping("/deleteReview/{rid}")
-    public String deleteReview(@PathVariable("rid") int reviewId) {
-        return service.deleteReview(reviewId);
-    }
+	// Handles updating an existing review
+	@PutMapping("/updateReview")
+	public String updateReview(@Valid @RequestBody Review review) {
+		return service.updateReview(review);
+	}
 
-    @GetMapping("/fetchById/{rid}")
-    public ReviewUserResponseDTO getReviewById(@PathVariable("rid") int reviewId) throws ReviewNotFound,UserNotFound{
-        return service.getReviewById(reviewId);
-    }
+	// Handles deleting a review by its ID
+	@DeleteMapping("/deleteReview/{rid}")
+	public String deleteReview(@PathVariable("rid") int reviewId) {
+		return service.deleteReview(reviewId);
+	}
 
-    @GetMapping("/fetchAll")
-    public List<Review> getAllReviews() {
-        return service.getAllReviews();
-    }
+	// Handles fetching a review by its ID
+	@GetMapping("/fetchById/{rid}")
+	public ReviewUserResponseDTO getReviewById(@PathVariable("rid") int reviewId) throws ReviewNotFound, UserNotFound {
+		return service.getReviewById(reviewId);
+	}
+
+	// Handles fetching all reviews
+	@GetMapping("/fetchAll")
+	public List<Review> getAllReviews() {
+		return service.getAllReviews();
+	}
 }

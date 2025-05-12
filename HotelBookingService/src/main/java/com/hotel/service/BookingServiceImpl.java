@@ -23,64 +23,68 @@ public class BookingServiceImpl implements BookingService {
 	Logger log = LoggerFactory.getLogger(BookingServiceImpl.class);
 
 	@Autowired
-	BookingRepository repository;
+	BookingRepository repository; // Handles database operations for Booking entities.
 
 	@Autowired
-	RoomAvailablity roomAvailablity;
+	RoomAvailablity roomAvailablity; // Interacts with the Hotel/Room availability service.
+
 	@Override
 	public String addBooking(Booking booking) throws HotelNotFoundException, RoomNotFound {
-	    int hotelId = booking.getHotelId();
-	    Hotels hotel = roomAvailablity.fetchHotelById(hotelId);
-	    if (hotel != null) {
-	        int roomCount = hotel.getRoomCount();
-	        if (roomCount >= 1) {
-	            roomCount = roomCount - 1;
-	            hotel.setRoomCount(roomCount);
+		// Adds a new booking and decreases the available room count in the hotel.
+		// Throws HotelNotFoundException if the hotel is not found.
+		int hotelId = booking.getHotelId();
+		Hotels hotel = roomAvailablity.fetchHotelById(hotelId);
+		if (hotel != null) {
+			int roomCount = hotel.getRoomCount();
+			if (roomCount >= 1) {
+				roomCount = roomCount - 1;
+				hotel.setRoomCount(roomCount);
 
-	            Booking bookings = repository.save(booking);
-	            if (bookings != null) {
-	            	roomAvailablity.updateHotel(hotel);
-	                return "Booking Information saved Successfully!!";
-	            } else {
-	                return "Something Wrong with Booking";
-	            }
-	        } else {
-	            return "Room is Not Available";
-	        }
-	    } else {
-	        throw new HotelNotFoundException("Hotel not found");
-	    }
+				Booking bookings = repository.save(booking);
+				if (bookings != null) {
+					roomAvailablity.updateHotel(hotel);
+					return "Booking Information saved Successfully!!";
+				} else {
+					return "Something Wrong with Booking";
+				}
+			} else {
+				return "Room is Not Available";
+			}
+		} else {
+			throw new HotelNotFoundException("Hotel not found");
+		}
 	}
-
 
 	@Override
 	public String updateBooking(Booking booking) throws HotelNotFoundException, RoomNotFound {
-		if(booking.getStatus().equals("Completed")) {
-			int hotelId=booking.getHotelId();
-			Hotels hotel=roomAvailablity.fetchHotelById(hotelId);
-			if(hotel!=null) {
+		// Updates an existing booking and potentially increases room count if status
+		// changes to "Completed".
+		// Throws HotelNotFoundException if the associated hotel is not found.
+		if (booking.getStatus().equals("Completed")) {
+			int hotelId = booking.getHotelId();
+			Hotels hotel = roomAvailablity.fetchHotelById(hotelId);
+			if (hotel != null) {
 				int roomCount = hotel.getRoomCount();
-				roomCount=roomCount+1;
+				roomCount = roomCount + 1;
 				hotel.setRoomCount(roomCount);
 				roomAvailablity.updateHotel(hotel);
 				return "Increased Successfully";
-			}
-			else {
+			} else {
 				throw new HotelNotFoundException("Hotel Id Not Found");
 			}
+		} else {
+			log.info("In BookingServiceImpl updateBooking method...");
+			Booking bookings = repository.save(booking);
+			if (bookings != null)
+				return "Booking Information Updated Successfully!!";
+			else
+				return "Something Wrong with Booking Update";
 		}
-		else {
-		log.info("In BookingServiceImpl updateBooking method...");
-		Booking bookings = repository.save(booking);
-		if (bookings != null)
-			return "Booking Information Updated Successfully!!";
-		else
-			return "Something Wrong with Booking Update";
-	}
 	}
 
 	@Override
 	public String deleteBooking(int id) {
+		// Deletes a booking by its ID.
 		log.info("In BookingServiceImpl deleteBooking method...");
 		repository.deleteById(id);
 		return "Booking Deleted Successfully";
@@ -88,6 +92,8 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public Booking getBookingById(int id) throws BookingNotFound {
+		// Retrieves a booking by its ID.
+		// Throws BookingNotFound if the booking ID is invalid.
 		log.info("In BookingServiceImpl getBookingById method...");
 		Optional<Booking> optional = repository.findById(id);
 		if (optional.isPresent())
@@ -98,29 +104,32 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public List<Booking> getAllBooking() {
+		// Retrieves all booking records.
 		log.info("In BookingServiceImpl getAllUser method...");
 		return repository.findAll();
 	}
 
-
 	@Override
 	public List<Booking> findByStatus(String status) {
+		// Retrieves bookings based on their status.
 		return repository.findByStatus(status);
 	}
 
-
 	@Override
 	public List<Booking> findByCheckInDateAfter(LocalDate date) {
-	    return repository.findByCheckInDateAfter(date);
+		// Retrieves bookings with a check-in date after the specified date.
+		return repository.findByCheckInDateAfter(date);
 	}
 
 	@Override
 	public List<Booking> findByCheckOutDateBefore(LocalDate date) {
-	    return repository.findByCheckOutDateBefore(date);
+		// Retrieves bookings with a check-out date before the specified date.
+		return repository.findByCheckOutDateBefore(date);
 	}
 
 	@Override
 	public List<Booking> findByUserIdAndStatus(int userId, String status) {
-	    return repository.findByUserIdAndStatus(userId, status);
+		// Retrieves bookings for a specific user ID with a specific status.
+		return repository.findByUserIdAndStatus(userId, status);
 	}
 }

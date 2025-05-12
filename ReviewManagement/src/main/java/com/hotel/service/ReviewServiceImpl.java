@@ -22,15 +22,15 @@ public class ReviewServiceImpl implements ReviewService {
 	Logger log = LoggerFactory.getLogger(ReviewServiceImpl.class);
 
 	@Autowired
-	ReviewRepository repository;
+	ReviewRepository repository; // Injecting ReviewRepository dependency
 
 	@Autowired
-	UserClient userClient;
+	UserClient userClient; // Injecting UserClient dependency for user-related operations
 
 	@Override
-	public String addReview(Review review) {
-		Review savedReview = repository.save(review);
-		if (savedReview != null) {
+	public String addReview(Review review) { // Implementation to add a new review
+		Review savedReview = repository.save(review); // Saving the review to the database
+		if (savedReview != null) { // Checking if the review was saved successfully
 			log.info("New Review is Added");
 			return "Review Added Successfully!!!";
 		} else {
@@ -39,10 +39,10 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public String updateReview(Review review) {
+	public String updateReview(Review review) { // Implementation to update an existing review
 		log.info("In ReviewServiceImpl updateReview method...");
-		Review updatedReview = repository.save(review);
-		if (updatedReview != null) {
+		Review updatedReview = repository.save(review); // Saving the updated review to the database
+		if (updatedReview != null) { // Checking if the review was updated successfully
 			return "Review Information Updated Successfully!!";
 		} else {
 			return "Something Went Wrong with Review Update";
@@ -50,33 +50,33 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public String deleteReview(int reviewId) {
+	public String deleteReview(int reviewId) { // Implementation to delete a review by its ID
 		log.info("In ReviewServiceImpl deleteReview method...");
-		repository.deleteById(reviewId);
+		repository.deleteById(reviewId); // Deleting the review from the database
 		return "Review Deleted Successfully";
 	}
 
 	@Override
-	public ReviewUserResponseDTO getReviewById(int id) throws ReviewNotFound, UserNotFound {
-		Optional<Review> optionalReview = repository.findById(id);
-		if (!optionalReview.isPresent()) {
+	public ReviewUserResponseDTO getReviewById(int id) throws ReviewNotFound, UserNotFound { // Implementation to retrieve a review and associated user by ID
+		Optional<Review> optionalReview = repository.findById(id); // Finding the review by ID
+		if (!optionalReview.isPresent()) { // Checking if the review exists
 			throw new ReviewNotFound("Review ID not present");
 		}
-		Review review = optionalReview.get();
-		int userId = review.getUserId();
-		UserRole user = userClient.getUser(userId);
-		if (user == null) {
+		Review review = optionalReview.get(); // Getting the review
+		int userId = review.getUserId(); // Extracting the user ID from the review
+		UserRole user = userClient.getUser(userId); // Calling the user service to get user details
+		if (user == null) { // Checking if the user exists
 			throw new UserNotFound("User ID is not present");
 		}
 		else {
 		log.info("Response Retrived Successfully");
-		return new ReviewUserResponseDTO(review, user);
+		return new ReviewUserResponseDTO(review, user); // Returning the review and user information
 		}
 	}
 
 	@Override
-	public List<Review> getAllReviews() {
+	public List<Review> getAllReviews() { // Implementation to retrieve all reviews
 		log.info("In ReviewServiceImpl getAllReviews method...");
-		return repository.findAll();
+		return repository.findAll(); // Fetching all reviews from the database
 	}
 }

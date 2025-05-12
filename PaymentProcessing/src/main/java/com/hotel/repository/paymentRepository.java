@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.hotel.model.payment;
 
+// Indicates this interface is a Spring Data JPA repository
 @Repository("paymentRepository")
+// Extends JpaRepository to provide CRUD operations for the Payment entity with Integer as the ID type
 public interface paymentRepository extends JpaRepository<payment,Integer>{
 
 }

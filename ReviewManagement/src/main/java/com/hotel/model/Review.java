@@ -15,33 +15,38 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "review_info")
+@Entity //Marks this class as a JPA entity
+@Data //Generates getters, setters, equals, hashCode, and toString methods
+@AllArgsConstructor //Generates a constructor with all fields as arguments
+@NoArgsConstructor //Generates a constructor with no arguments
+@Table(name = "review_info") //Specifies the database table name for this entity
 public class Review {
-    @Id
-    private int reviewId;
+	// Marks this field as the primary key
+	@Id
+	private int reviewId;
 
-    @NotNull(message = "User ID cannot be null")
-    private int userId;
+	// Ensures the user ID is not null
+	@NotNull(message = "User ID cannot be null")
+	private int userId;
 
-    @NotNull(message = "Hotel ID cannot be null")
-    private int hotelId;
+	// Ensures the hotel ID is not null
+	@NotNull(message = "Hotel ID cannot be null")
+	private int hotelId;
 
-    @NotBlank(message = "Comment cannot be blank")
-    @Size(max = 50, message = "Comment cannot exceed 50 characters")
-    private String comment;
+	// Ensures the comment is not blank and has a maximum size
+	@NotBlank(message = "Comment cannot be blank")
+	@Size(max = 50, message = "Comment cannot exceed 50 characters")
+	private String comment;
 
-    @Min(value = 1, message = "Rating must be at least 1")
-    @Max(value = 5, message = "Rating must be at most 5")
-    private int rating;
+	// Ensures the rating is within the valid range
+	@Min(value = 1, message = "Rating must be at least 1")
+	@Max(value = 5, message = "Rating must be at most 5")
+	private int rating;
+	private LocalDateTime timestamp;
 
-    private LocalDateTime timestamp;
-
-    @PrePersist
-    protected void onCreate() {
-        this.timestamp = LocalDateTime.now();
-    }
+	// Automatically sets the timestamp before persisting the entity
+	@PrePersist
+	protected void onCreate() {
+		this.timestamp = LocalDateTime.now();
+	}
 }

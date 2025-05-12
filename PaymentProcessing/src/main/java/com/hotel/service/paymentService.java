@@ -8,12 +8,16 @@ import com.hotel.model.payment;
 
 public interface paymentService {
 
-	public abstract String addPayment(payment payment)throws BookingNotFound;
+	// Abstract method to add a new payment
+	public abstract String addPayment(payment payment) throws BookingNotFound;
 
+	// Abstract method to retrieve a payment by its ID
 	public abstract payment getPaymentById(int id) throws paymentNotFound;
 
+	// Abstract method to retrieve all payments
 	public abstract List<payment> getAllPayments();
-	
-	public abstract String cancelPayment(payment pay) throws BookingNotFound,paymentNotFound;
+
+	// Abstract method to cancel a payment
+	public abstract String cancelPayment(payment pay) throws BookingNotFound, paymentNotFound;
 
 }

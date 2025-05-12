@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "user_info")
 
 /*
-Entity class representing a user in the hotel booking system. Maps to the
-"user_info" table in the database.
-*/
+ * Entity class representing a user in the hotel booking system. Maps to the
+ * "user_info" table in the database.
+ */
 
 public class UserRole {
 	@Id

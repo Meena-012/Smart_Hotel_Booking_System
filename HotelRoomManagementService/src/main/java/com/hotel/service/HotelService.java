@@ -9,22 +9,28 @@ import com.hotel.model.Hotels;
 
 public interface HotelService {
 
+	// Defines the abstract class for saving a new hotel.
 	public abstract String saveHotel(Hotels hotel);
 
+	// Defines the abstract class for updating an existing hotel.
 	public abstract String updateHotel(Hotels hotel);
 
+	// Defines the abstract class for deleting a hotel by its ID.
 	public abstract String deleteHotel(int id);
 
+	// Defines the abstract class for fetching a hotel and its rooms by hotel ID.
 	public abstract HotelRoomResponseDTO fetchHotelById(int id) throws HotelNotFoundException, RoomNotFound;
 
+	// Defines the abstract class for retrieving all hotels.
 	public abstract List<Hotels> getAllHotel();
 
+	// Defines the abstract class for fetching a hotel by its ID.
 	Hotels fetchById(int id) throws HotelNotFoundException;
 
-	public abstract List<Hotels> findByLocation(String Location);
-	
-	//public abstract List<Hotels> getHotelByRatingGreaterThan(int rating);
-	
+	// Defines the contract for finding hotels by their location.
+	public abstract List<Hotels> findByLocation(String location);
+
+	// Defines the abstract class for finding hotels by their name.
 	public abstract List<Hotels> findByHotelName(String hotelName);
 
 }

@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Data // Lombok annotation to automatically generate getters, setters, equals, hashCode, and toString methods.
+@NoArgsConstructor // Lombok annotation to automatically generate a constructor with no arguments.
+@AllArgsConstructor // Lombok annotation to automatically generate a constructor with all fields as arguments.
 public class Hotels {
 	private int hotelId;
     private String hotelName;
@@ -15,5 +15,4 @@ public class Hotels {
     private int roomId;
     private String amenities;
     private int roomCount;
-    private int rating;
 }

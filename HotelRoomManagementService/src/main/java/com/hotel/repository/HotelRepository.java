@@ -9,9 +9,9 @@ import com.hotel.model.Hotels;
 
 @Repository("hotelrepository")
 public interface HotelRepository extends JpaRepository<Hotels, Integer> {
+	// Retrieves hotels based on the provided location.
 	public abstract List<Hotels> findByLocation(String location);
-	
-	//public abstract List<Hotels> getHotelByRatingGreaterThan(int rating);
-	
+
+	// Retrieves hotels based on the provided hotel name.
 	public abstract List<Hotels> findByHotelName(String hotelName);
 }
