@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hotel.exception.BookingNotFound;
 import com.hotel.exception.HotelNotFoundException;
 import com.hotel.exception.RoomNotFound;
+import com.hotel.exception.UserNotFound;
 import com.hotel.model.Booking;
 import com.hotel.service.BookingService;
 
@@ -31,7 +32,7 @@ public class BookingController {
 
 	// Endpoint to add a new booking.
 	@PostMapping("/savebooking")
-	public String addBooking(@Valid @RequestBody Booking user) throws HotelNotFoundException, RoomNotFound {
+	public String addBooking(@Valid @RequestBody Booking user) throws HotelNotFoundException, RoomNotFound, UserNotFound {
 		return service.addBooking(user);
 	}
 

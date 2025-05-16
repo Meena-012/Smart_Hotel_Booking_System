@@ -10,7 +10,7 @@ import com.hotel.model.Review;
 public interface ReviewService {
 
 	// Abstract method to add a new review
-	public abstract String addReview(Review review);
+	public abstract String addReview(Review review) throws UserNotFound;
 
 	// Abstract method to update an existing review
 	public abstract String updateReview(Review review);

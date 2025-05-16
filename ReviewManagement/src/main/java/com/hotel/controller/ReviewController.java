@@ -30,7 +30,7 @@ public class ReviewController {
 
 	// Handles adding a new review
 	@PostMapping("/saveReview")
-	public String addReview(@Valid @RequestBody Review review) {
+	public String addReview(@Valid @RequestBody Review review) throws UserNotFound {
 		return service.addReview(review);
 	}
 

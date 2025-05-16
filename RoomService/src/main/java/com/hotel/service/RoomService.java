@@ -2,13 +2,15 @@ package com.hotel.service;
 
 import java.util.List;
 
+import com.hotel.exception.HotelNotFoundException;
+import com.hotel.exception.RoomLimitExceededException;
 import com.hotel.exception.RoomNotFound;
 import com.hotel.model.Room;
 
 public interface RoomService {
 
 	// Abstract method to add a new room
-	public abstract String addRoom(Room room);
+	public abstract String addRoom(Room room) throws HotelNotFoundException, RoomLimitExceededException, RoomNotFound;
 
 	// Abstract method to update an existing room
 	public abstract String updateRoom(Room room);

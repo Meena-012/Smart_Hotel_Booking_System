@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hotel.exception.HotelNotFoundException;
+import com.hotel.exception.RoomLimitExceededException;
 import com.hotel.exception.RoomNotFound;
 import com.hotel.model.Room;
 import com.hotel.service.RoomService;
@@ -31,7 +33,7 @@ public class RoomController {
 	//@Valid is used the display the validation messages in postman
 	//@RequestBody is the annotation that directs Spring to process the HTTP request body.
 	// Endpoint to add a new room
-	public String addRoom(@Valid @RequestBody Room room) { 
+	public String addRoom(@Valid @RequestBody Room room) throws HotelNotFoundException, RoomLimitExceededException, RoomNotFound { 
 		return service.addRoom(room);
 	}
 

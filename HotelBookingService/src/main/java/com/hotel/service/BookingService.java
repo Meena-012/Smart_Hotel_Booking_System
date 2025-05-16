@@ -6,12 +6,13 @@ import java.util.List;
 import com.hotel.exception.BookingNotFound;
 import com.hotel.exception.HotelNotFoundException;
 import com.hotel.exception.RoomNotFound;
+import com.hotel.exception.UserNotFound;
 import com.hotel.model.Booking;
 
 public interface BookingService {
 
 	// Defines the contract for adding a new booking.
-	public abstract String addBooking(Booking booking) throws HotelNotFoundException, RoomNotFound;
+	public abstract String addBooking(Booking booking) throws HotelNotFoundException, RoomNotFound, UserNotFound;
 
 	// Defines the contract for updating an existing booking.
 	public abstract String updateBooking(Booking booking) throws HotelNotFoundException, RoomNotFound;

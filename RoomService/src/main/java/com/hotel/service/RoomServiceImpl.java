@@ -6,8 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hotel.dto.Hotels;
+import com.hotel.exception.HotelNotFoundException;
+import com.hotel.exception.RoomLimitExceededException;
 import com.hotel.exception.RoomNotFound;
 import com.hotel.model.Room;
+import com.hotel.openFeign.RoomAvailablity;
 import com.hotel.repository.RoomRepository;
 
 @Service("roomService")
@@ -16,13 +20,31 @@ public class RoomServiceImpl implements RoomService {
 	@Autowired
 	RoomRepository repository; // Injecting RoomRepository dependency
 
-	@Override
-	public String addRoom(Room room) { // Implementation to add a new room
-		Room rooms = repository.save(room); // Saving the room to the database
-		if (rooms != null) // Checking if the room was saved successfully
-			return "Room Information Saved Successfully!!";
-		else
-			return "Something Went Wrong While Saving Room Info";
+	@Autowired
+	RoomAvailablity roomAvailablity;
+
+	@Autowired
+	private RoomRepository roomRepository;
+
+	public String addRoom(Room room) throws RoomLimitExceededException, HotelNotFoundException, RoomNotFound {
+		int hotelId = room.getHotelId();
+
+		// Fetch hotel details
+		Hotels hotel = roomAvailablity.fetchHotelById(hotelId);
+		if (hotel == null) {
+			throw new HotelNotFoundException("Hotel Id not found");
+		}
+		int maxRoomCount = hotel.getRoomCount(); // Maximum allowed room count
+		int currentRoomCount = roomRepository.countByHotelId(hotelId); // Get existing rooms for hotel
+
+		// Validate room count before adding new rooms
+		if (currentRoomCount >= maxRoomCount) {
+			throw new RoomLimitExceededException("Cannot add more rooms! Maximum allowed is " + maxRoomCount);
+		}
+
+		// Save room since limit is not exceeded
+		roomRepository.save(room);
+		return "Room added successfully!";
 	}
 
 	@Override
@@ -41,7 +63,8 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public Room getRoomById(int roomId) throws RoomNotFound { // Implementation to retrieve a room by its ID, may throw RoomNotFound
+	public Room getRoomById(int roomId) throws RoomNotFound { // Implementation to retrieve a room by its ID, may throw
+																// RoomNotFound
 		Optional<Room> optional = repository.findById(roomId); // Finding the room by ID in the repository
 		if (optional.isPresent()) // Checking if a room with the given ID exists
 			return optional.get(); // Returning the found room
@@ -60,13 +83,17 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public List<Room> findByPriceLessThan(double price) { // Implementation to find rooms with price less than a given value
-		return repository.findByPriceLessThan(price); // Fetching rooms with price less than the given value from the repository
+	public List<Room> findByPriceLessThan(double price) { // Implementation to find rooms with price less than a given
+															// value
+		return repository.findByPriceLessThan(price); // Fetching rooms with price less than the given value from the
+														// repository
 	}
 
 	@Override
-	public List<Room> findByFeaturesContaining(String features) { // Implementation to find rooms whose features contain a specific keyword
-		return repository.findByFeaturesContaining(features); // Fetching rooms with features containing the keyword from the repository
+	public List<Room> findByFeaturesContaining(String features) { // Implementation to find rooms whose features contain
+																	// a specific keyword
+		return repository.findByFeaturesContaining(features); // Fetching rooms with features containing the keyword
+																// from the repository
 	}
 
 }

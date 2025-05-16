@@ -3,26 +3,30 @@ package com.hotel.model;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-@Entity //Marks this class as a JPA entity
-@Data //Generates getters, setters, equals, hashCode, and toString methods
-@AllArgsConstructor //Generates a constructor with all fields as arguments
-@NoArgsConstructor //Generates a constructor with no arguments
-@Table(name = "review_info") //Specifies the database table name for this entity
+@Entity // Marks this class as a JPA entity
+@Data // Generates getters, setters, equals, hashCode, and toString methods
+@Table(name = "review_info") // Specifies the database table name for this entity
+@RequiredArgsConstructor
 public class Review {
+	
 	// Marks this field as the primary key
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
+	@SequenceGenerator(name = "review_seq", sequenceName = "reveiw_sequence", initialValue = 501, allocationSize = 1)
 	private int reviewId;
 
 	// Ensures the user ID is not null
@@ -48,5 +52,14 @@ public class Review {
 	@PrePersist
 	protected void onCreate() {
 		this.timestamp = LocalDateTime.now();
+	}
+
+	public Review(int userId,int hotelId, String comment,int rating,LocalDateTime timestamp) {
+		super();
+		this.userId = userId;
+		this.hotelId = hotelId;
+		this.comment = comment;
+		this.rating = rating;
+		this.timestamp = timestamp;
 	}
 }

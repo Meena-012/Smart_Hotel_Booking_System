@@ -28,13 +28,21 @@ public class ReviewServiceImpl implements ReviewService {
 	UserClient userClient; // Injecting UserClient dependency for user-related operations
 
 	@Override
-	public String addReview(Review review) { // Implementation to add a new review
-		Review savedReview = repository.save(review); // Saving the review to the database
-		if (savedReview != null) { // Checking if the review was saved successfully
+	public String addReview(Review review) throws UserNotFound {
+		int userId = review.getUserId();
+
+		// Check if user exists before saving review
+		UserRole user = userClient.getUser(userId); // Fetch user details from user service
+		if (user == null) {
+			throw new UserNotFound("User ID is not present");
+		}
+
+		Review savedReview = repository.save(review);
+		if (savedReview != null) {
 			log.info("New Review is Added");
 			return "Review Added Successfully!!!";
 		} else {
-			return "Something Went wrong with Adding Review";
+			return "Something Went Wrong with Adding Review";
 		}
 	}
 
@@ -57,7 +65,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public ReviewUserResponseDTO getReviewById(int id) throws ReviewNotFound, UserNotFound { // Implementation to retrieve a review and associated user by ID
+	public ReviewUserResponseDTO getReviewById(int id) throws ReviewNotFound, UserNotFound { // Implementation to
+																								// retrieve a review and
+																								// associated user by ID
 		Optional<Review> optionalReview = repository.findById(id); // Finding the review by ID
 		if (!optionalReview.isPresent()) { // Checking if the review exists
 			throw new ReviewNotFound("Review ID not present");
@@ -67,10 +77,9 @@ public class ReviewServiceImpl implements ReviewService {
 		UserRole user = userClient.getUser(userId); // Calling the user service to get user details
 		if (user == null) { // Checking if the user exists
 			throw new UserNotFound("User ID is not present");
-		}
-		else {
-		log.info("Response Retrived Successfully");
-		return new ReviewUserResponseDTO(review, user); // Returning the review and user information
+		} else {
+			log.info("Response Retrived Successfully");
+			return new ReviewUserResponseDTO(review, user); // Returning the review and user information
 		}
 	}
 

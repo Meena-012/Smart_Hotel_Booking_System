@@ -28,7 +28,7 @@ public class Room {
     @NotNull
     private int hotelId; // The hotel this room belongs to (foreign key)
 
-    private int userId;
+    //private int userId;
     
     @NotBlank(message = "Room type cannot be empty")
     @Size(min = 4, max = 50, message = "Room type must be between 4 and 50 characters")

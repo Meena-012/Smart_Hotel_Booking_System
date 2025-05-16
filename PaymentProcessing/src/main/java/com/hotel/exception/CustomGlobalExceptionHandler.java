@@ -29,8 +29,8 @@ public class CustomGlobalExceptionHandler {
 
 	}
 
-	@ExceptionHandler(value = paymentNotFound.class)
-	public ResponseEntity<ExceptionResponse> handleAdminRegistrationException(paymentNotFound exception,
+	@ExceptionHandler(value = PaymentNotFound.class)
+	public ResponseEntity<ExceptionResponse> handleAdminRegistrationException(PaymentNotFound exception,
 			WebRequest webRequest) {
 
 		ExceptionResponse exceptionResponse = new ExceptionResponse();

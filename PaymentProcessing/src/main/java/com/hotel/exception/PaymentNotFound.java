@@ -4,8 +4,8 @@ package com.hotel.exception;
 @SuppressWarnings("serial")
 
 //PaymentNotFound exception thrown when a paymet is not found in the system.
-public class paymentNotFound extends Exception {
-	public paymentNotFound(String message) {
+public class PaymentNotFound extends Exception {
+	public PaymentNotFound(String message) {
 		super(message);
 	}
 

@@ -66,9 +66,9 @@ public class HotelController {
 	}
 
 	// Endpoint to retrieve hotels by their location.
-	@GetMapping("/getByLocation/{location}")
-	public List<Hotels> getByLocation(@PathVariable("location") String Location) {
-		return service.findByLocation(Location);
+	@GetMapping("/getByLocation/{locations}")
+	public List<Hotels> getByLocation(@PathVariable("locations") String location) {
+		return service.findByLocation(location);
 	}
 
 //	@GetMapping("/getByRating/{rid}")
@@ -77,8 +77,8 @@ public class HotelController {
 //	}
 
 	// Endpoint to retrieve hotels by their name.
-	@GetMapping("/getByHotelName/{hotelName}")
-	public List<Hotels> getByHotelName(@PathVariable("hotelName") String hotelName) {
+	@GetMapping("/getByHotelName/{hName}")
+	public List<Hotels> getByHotelName(@PathVariable("hName") String hotelName) {
 		return service.findByHotelName(hotelName);
 	}
 

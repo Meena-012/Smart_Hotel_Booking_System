@@ -3,27 +3,28 @@ package com.hotel.model;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity // Marks this class as a JPA entity
 @Data // Generates getters, setters, equals, hashCode, and toString methods
 @Table(name = "booking_info") // Specifies the database table name for this entity
-@AllArgsConstructor // Generates a constructor with all fields as arguments
-@NoArgsConstructor // Generates a constructor with no arguments
+@RequiredArgsConstructor
 public class Booking {
 
 	// Marks this field as the primary key
 	@Id
-	// Ensures the booking ID is a positive number
-	@Positive(message = "Booking ID must be a positive number")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_seq")
+	@SequenceGenerator(name = "booking_seq", sequenceName = "booking_sequence", initialValue = 301, allocationSize = 1)
 	private int bookingid;
 
 	// Ensures the user ID is a positive number
@@ -46,6 +47,18 @@ public class Booking {
 	@Future(message = "Check-out date must be in the future")
 	private LocalDate checkOutDate;
 
-	private String status;
+	private String status="Pending";
+
+	public Booking(int userId, int roomId, int hotelId, LocalDate checkInDate,LocalDate checkOutDate,String status) {
+		super();
+		this.userId = userId;
+		this.roomId = roomId;
+		this.hotelId = hotelId;
+		this.checkInDate = checkInDate;
+		this.checkOutDate = checkOutDate;
+		this.status = status;
+	}
+	
+	
 
 }

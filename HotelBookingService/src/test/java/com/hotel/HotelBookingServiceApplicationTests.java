@@ -20,6 +20,7 @@ import com.hotel.dto.Hotels;
 import com.hotel.exception.BookingNotFound;
 import com.hotel.exception.HotelNotFoundException;
 import com.hotel.exception.RoomNotFound;
+import com.hotel.exception.UserNotFound;
 import com.hotel.model.Booking;
 import com.hotel.openFeign.RoomAvailablity;
 import com.hotel.repository.BookingRepository;
@@ -38,8 +39,8 @@ class HotelBookingServiceApplicationTests {
 	private BookingServiceImpl service;
 
 	@Test
-	void addBookingSuccessTest() throws HotelNotFoundException, RoomNotFound {
-		Booking booking = new Booking(1, 101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2), "Pending");
+	void addBookingSuccessTest() throws HotelNotFoundException, RoomNotFound, UserNotFound {
+		Booking booking = new Booking(101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2),"pending");
 		Hotels hotel = new Hotels(301, "Taj", "Chennai", 1, 201, "Amenities", 2);
 		Mockito.when(roomAvailablity.fetchHotelById(301)).thenReturn(hotel);
 		Mockito.when(repository.save(booking)).thenReturn(booking);
@@ -49,14 +50,14 @@ class HotelBookingServiceApplicationTests {
 
 	@Test
 	void addBookingHotelNotFoundTest() throws HotelNotFoundException, RoomNotFound {
-		Booking booking = new Booking(1, 101, 201, 999, LocalDate.now(), LocalDate.now().plusDays(2), "Pending");
+		Booking booking = new Booking(101, 201, 999, LocalDate.now(), LocalDate.now().plusDays(2),"pending");
 		Mockito.when(roomAvailablity.fetchHotelById(999)).thenReturn(null);
 		assertThrows(HotelNotFoundException.class, () -> service.addBooking(booking));
 	}
 
 	@Test
-	void addBookingRoomNotAvailableTest() throws HotelNotFoundException, RoomNotFound {
-		Booking booking = new Booking(1, 101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2), "Pending");
+	void addBookingRoomNotAvailableTest() throws HotelNotFoundException, RoomNotFound, UserNotFound {
+		Booking booking = new Booking(101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2),"pending");
 		Hotels hotel = new Hotels(301, "Taj", "Chennai", 1, 201, "Amenities", 0);
 
 		Mockito.when(roomAvailablity.fetchHotelById(301)).thenReturn(hotel);
@@ -66,7 +67,7 @@ class HotelBookingServiceApplicationTests {
 
 	@Test
 	void updateBookingTest() throws HotelNotFoundException, RoomNotFound {
-		Booking booking = new Booking(1, 101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2), "Confirmed");
+		Booking booking = new Booking(101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2),"pending");
 		Mockito.when(repository.save(booking)).thenReturn(booking);
 		String response = service.updateBooking(booking);
 		assertEquals("Booking Information Updated Successfully!!", response);
@@ -81,7 +82,7 @@ class HotelBookingServiceApplicationTests {
 
 	@Test
 	void getBookingByIdTest() throws BookingNotFound {
-		Booking booking = new Booking(1, 101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2), "Confirmed");
+		Booking booking = new Booking(101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2),"pending");
 		Mockito.when(repository.findById(1)).thenReturn(Optional.of(booking));
 		Booking result = service.getBookingById(1);
 		assertEquals(booking, result);
@@ -96,8 +97,8 @@ class HotelBookingServiceApplicationTests {
 	@Test
 	void getAllBookingTest() {
 		List<Booking> bookings = Arrays.asList(
-				new Booking(1, 101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2), "Confirmed"),
-				new Booking(2, 102, 202, 302, LocalDate.now(), LocalDate.now().plusDays(3), "Pending"));
+				new Booking(101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2),"pending"),
+				new Booking(102, 202, 302, LocalDate.now(), LocalDate.now().plusDays(3),"pending"));
 		Mockito.when(repository.findAll()).thenReturn(bookings);
 		List<Booking> result = service.getAllBooking();
 		assertEquals(bookings, result);
@@ -106,7 +107,7 @@ class HotelBookingServiceApplicationTests {
 	@Test
 	void findByStatusTest() {
 		List<Booking> bookings = Arrays
-				.asList(new Booking(1, 101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2), "Confirmed"));
+				.asList(new Booking(101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2),"pending"));
 		Mockito.when(repository.findByStatus("Confirmed")).thenReturn(bookings);
 		List<Booking> result = service.findByStatus("Confirmed");
 		assertEquals(bookings, result);
@@ -116,7 +117,7 @@ class HotelBookingServiceApplicationTests {
 	void findByCheckInDateAfterTest() {
 		LocalDate date = LocalDate.now();
 		List<Booking> bookings = Arrays
-				.asList(new Booking(1, 101, 201, 301, date.plusDays(1), date.plusDays(3), "Confirmed"));
+				.asList(new Booking(101, 201, 301, date.plusDays(1), date.plusDays(3),"pending"));
 		Mockito.when(repository.findByCheckInDateAfter(date)).thenReturn(bookings);
 		List<Booking> result = service.findByCheckInDateAfter(date);
 		assertEquals(bookings, result);
@@ -126,7 +127,7 @@ class HotelBookingServiceApplicationTests {
 	void findByCheckOutDateBeforeTest() {
 		LocalDate date = LocalDate.now().plusDays(5);
 		List<Booking> bookings = Arrays
-				.asList(new Booking(1, 101, 201, 301, date.minusDays(3), date.minusDays(1), "Confirmed"));
+				.asList(new Booking(101, 201, 301, date.minusDays(3), date.minusDays(1),"pending"));
 		Mockito.when(repository.findByCheckOutDateBefore(date)).thenReturn(bookings);
 		List<Booking> result = service.findByCheckOutDateBefore(date);
 		assertEquals(bookings, result);
@@ -135,7 +136,7 @@ class HotelBookingServiceApplicationTests {
 	@Test
 	void findByUserIdAndStatusTest() {
 		List<Booking> bookings = Arrays
-				.asList(new Booking(1, 101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2), "Confirmed"));
+				.asList(new Booking(101, 201, 301, LocalDate.now(), LocalDate.now().plusDays(2),"pending"));
 		Mockito.when(repository.findByUserIdAndStatus(101, "Confirmed")).thenReturn(bookings);
 		List<Booking> result = service.findByUserIdAndStatus(101, "Confirmed");
 		assertEquals(bookings, result);

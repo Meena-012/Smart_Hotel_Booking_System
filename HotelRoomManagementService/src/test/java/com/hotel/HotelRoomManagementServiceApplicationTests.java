@@ -9,10 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hotel.dto.HotelRoomResponseDTO;
 import com.hotel.dto.Room;
@@ -22,7 +21,7 @@ import com.hotel.openFeign.RoomClient;
 import com.hotel.repository.HotelRepository;
 import com.hotel.service.HotelServiceImpl;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
 public class HotelRoomManagementServiceApplicationTests {
 
     @Mock
@@ -36,7 +35,7 @@ public class HotelRoomManagementServiceApplicationTests {
 
     @Test
     void saveHotelTest() {
-        Hotels hotel = new Hotels(102, "Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
+        Hotels hotel = new Hotels("Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
         when(repository.save(hotel)).thenReturn(hotel);
         String response = service.saveHotel(hotel);
         assertEquals("Hotel Information Saved Successfully!!!", response);
@@ -44,7 +43,7 @@ public class HotelRoomManagementServiceApplicationTests {
 
     @Test
     void updateHotelTest() {
-        Hotels hotel = new Hotels(102, "Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
+        Hotels hotel = new Hotels("Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
         when(repository.save(hotel)).thenReturn(hotel);
         String response = service.updateHotel(hotel);
         assertEquals("Hotel Information Updated Successfully!!!", response);
@@ -60,7 +59,7 @@ public class HotelRoomManagementServiceApplicationTests {
 
     @Test
     void fetchHotelByIdTest() throws HotelNotFoundException {
-        Hotels hotel = new Hotels(102, "Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
+        Hotels hotel = new Hotels("Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
         Room room1 = new Room(201, 1, 101, "Double", 3500.00, "AC, TV, Kitchenette, City View");
         Room room2 = new Room(202, 1, 102, "Single", 2500.00, "AC, TV, Garden View");
         List<Room> roomList = Arrays.asList(room1, room2);
@@ -83,7 +82,7 @@ public class HotelRoomManagementServiceApplicationTests {
 
     @Test
     void fetchByIdTest() throws HotelNotFoundException {
-        Hotels hotel = new Hotels(102, "Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
+        Hotels hotel = new Hotels("Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
         when(repository.findById(1)).thenReturn(Optional.of(hotel));
         Hotels response = service.fetchById(1);
         assertEquals(hotel, response);
@@ -101,8 +100,8 @@ public class HotelRoomManagementServiceApplicationTests {
 
     @Test
     void getAllHotelTest() {
-        Hotels hotel1 = new Hotels(102, "Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
-        Hotels hotel2 = new Hotels(103, "Leela Palace", "Bangalore", 2, 202, "Luxury bedding, spa access, minibar, and Wi-Fi", 3);
+        Hotels hotel1 = new Hotels("Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
+        Hotels hotel2 = new Hotels("Leela Palace", "Bangalore", 2, 202, "Luxury bedding, spa access, minibar, and Wi-Fi", 3);
         List<Hotels> hotelList = Arrays.asList(hotel1, hotel2);
         when(repository.findAll()).thenReturn(hotelList);
         List<Hotels> response = service.getAllHotel();
@@ -111,7 +110,7 @@ public class HotelRoomManagementServiceApplicationTests {
 
     @Test
     void findByLocationTest() {
-        Hotels hotel = new Hotels(102, "Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
+        Hotels hotel = new Hotels("Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
         List<Hotels> hotelList = Arrays.asList(hotel);
         when(repository.findByLocation("New York")).thenReturn(hotelList);
         List<Hotels> response = service.findByLocation("New York");
@@ -129,7 +128,7 @@ public class HotelRoomManagementServiceApplicationTests {
 
     @Test
     void findByHotelNameTest() {
-        Hotels hotel = new Hotels(102, "Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
+        Hotels hotel = new Hotels("Taj", "Chennai", 1,201, "BedSheet,clean rooms,toiletries,and Wi-Fi", 2);
         List<Hotels> hotelList = Arrays.asList(hotel);
         when(repository.findByHotelName("Grand Hotel")).thenReturn(hotelList);
         List<Hotels> response = service.findByHotelName("Grand Hotel");
